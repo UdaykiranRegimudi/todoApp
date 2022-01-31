@@ -24,8 +24,8 @@ const initializeDbAndServer = async () => {
       driver: sqlite3.Database,
     });
 
-    app.listen(process.env.PORT || 3001, () =>
-      console.log("Server Running at http://localhost:3001/")
+    app.listen(process.env.PORT || 3002, () =>
+      console.log("Server Running at http://localhost:3002/")
     );
   } catch (error) {
     console.log(`DB Error: ${error.message}`);
@@ -60,7 +60,7 @@ app.post("/todos/", async (request, response) => {
   const { id, todo, isChecked } = request.body;
   const postTodoQuery = `
   INSERT INTO
-    todo (id, todo, is_checked)
+    todo
   VALUES
     (${id}, '${todo}', '${isChecked}');`;
   await database.run(postTodoQuery);
